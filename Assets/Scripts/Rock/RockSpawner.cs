@@ -59,7 +59,8 @@ namespace Rock
             // generate random location and create new rock
             var worldLocation = new Vector3(
                 Random.Range(ScreenUtils.ScreenLeft, ScreenUtils.ScreenRight),
-                Random.Range(ScreenUtils.ScreenBottom, ScreenUtils.ScreenTop),
+                Random.Range(ScreenUtils.ScreenTop/2f, ScreenUtils.ScreenTop),
+                //Random.Range(ScreenUtils.ScreenBottom, ScreenUtils.ScreenTop),
                 0);
             SetMinAndMax(worldLocation);
 
@@ -68,7 +69,8 @@ namespace Rock
                 // change location and calculate new rectangle points
                 worldLocation = new Vector3(
                     Random.Range(ScreenUtils.ScreenLeft, ScreenUtils.ScreenRight),
-                    Random.Range(ScreenUtils.ScreenBottom, ScreenUtils.ScreenTop),
+                    Random.Range(ScreenUtils.ScreenTop/2f, ScreenUtils.ScreenTop),
+                    //Random.Range(ScreenUtils.ScreenBottom, ScreenUtils.ScreenTop),
                     0);
                 SetMinAndMax(worldLocation);
             }

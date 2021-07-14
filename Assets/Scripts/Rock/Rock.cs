@@ -1,10 +1,15 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Utils;
+using Random = UnityEngine.Random;
 
 namespace Rock
 {
     public class Rock : MonoBehaviour
     {
+        
+        //[SerializeField] private GameObject explosionPrefap = null;
+        
         private static GameObject _spaceShip;
 
         // Customizing initial force
@@ -32,7 +37,7 @@ namespace Rock
         {
             var size = transform.localScale;
 
-            var scale = Random.Range(0.5f, 2f);
+            var scale = Random.Range(0.8f, 1.6f);
             size *= scale;
 
             transform.localScale = size;
@@ -73,6 +78,17 @@ namespace Rock
         
             transform.position = position;*/
             
+            Destroy(gameObject);
+        }
+
+        private void OnCollisionStay2D(Collision2D other)
+        {
+
+            if (transform.localScale.x > 1.5f)
+            {
+                //explode
+            }
+
             Destroy(gameObject);
         }
     }

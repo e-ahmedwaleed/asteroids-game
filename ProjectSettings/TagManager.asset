@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Space Ship
+  - Rock
   layers:
   - Default
   - TransparentFX

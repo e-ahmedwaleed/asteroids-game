@@ -1,91 +1,64 @@
-﻿using System;
-using UnityEngine;
-using Utils;
+﻿using UnityEngine;
 
 namespace Ship
 {
     public class Ship : MonoBehaviour
     {
-        private Rigidbody2D _rigidbody;
-    
-        // Drive the ship
-        private Vector2 _direction;
-        private static readonly float ThrustForce = 5f;
+        private static readonly float MaxSpeed = 10f;
+        private static readonly float ThrustForce = 0.25f;
 
-        // Make the ship wrap
-        private float _colliderRadius;
-    
-        // Rotate the ship
-        private static readonly float RotateDegreesPerSecond = 180f;
+
+        // Drive the ship
+        private Rigidbody2D _rigidbody;
 
         /// <summary>
-        /// Use this for initialization
+        ///     Use this for initialization
         /// </summary>
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
-            _direction = Vector2.right;
 
-            _colliderRadius = GetComponent<CircleCollider2D>().radius;
+            //https://answers.unity.com/questions/38542/prevent-rigidbody-from-rotating.html
+            _rigidbody.freezeRotation = true;
         }
 
-        /// <summary>
-        /// FixedUpdate is called 50 times per second
-        /// </summary>
-        private void FixedUpdate()
-        {
-            var axis = Input.GetAxis("Thrust") + Input.GetAxis("Space Thrust");
-            if (axis > 0)
-                _rigidbody.AddForce(ThrustForce * _direction, ForceMode2D.Force);
-            else if (axis < 0)
-                _rigidbody.AddForce(-0.8f * ThrustForce * _direction, ForceMode2D.Force);
-        }
-
-        private void ShipWrap()
-        {
-            var position = transform.position;
-
-            if (position.x + _colliderRadius < ScreenUtils.ScreenLeft)
-                position.x = ScreenUtils.ScreenRight + _colliderRadius;
-            else if (position.x - _colliderRadius > ScreenUtils.ScreenRight)
-                position.x = ScreenUtils.ScreenLeft - _colliderRadius;
-
-            if (position.y + _colliderRadius < ScreenUtils.ScreenBottom)
-                position.y = ScreenUtils.ScreenTop + _colliderRadius;
-            else if (position.y - _colliderRadius > ScreenUtils.ScreenTop)
-                position.y = ScreenUtils.ScreenBottom - _colliderRadius;
-
-            transform.position = position;
-        }
-    
-        /// <summary>
-        /// Update is called once per frame
-        /// </summary>
         private void Update()
         {
-            ShipWrap();
-            
-            var rotationInput = Input.GetAxis("Rotate");
-            if (rotationInput.CompareTo(0) == 0) return;
+            var yAxis = Input.GetAxis("Vertical");
+            var xAxis = Input.GetAxis("Horizontal");
 
-            // calculate rotation amount and apply rotation
-            var rotationAmount = RotateDegreesPerSecond * Time.deltaTime;
-            if (rotationInput < 0) rotationAmount *= -1;
-            transform.Rotate(Vector3.forward, rotationAmount);
+            if (xAxis > 0)
+                _rigidbody.AddForce(ThrustForce * Vector2.right, ForceMode2D.Impulse);
+            else if (xAxis < 0)
+                _rigidbody.AddForce(ThrustForce * Vector2.left, ForceMode2D.Impulse);
 
-            // Thrusting in correct direction 
-            Vector3 dir = transform.eulerAngles;
-            float angle = Mathf.Deg2Rad * dir.z;
+            if (yAxis > 0)
+                _rigidbody.AddForce(ThrustForce * Vector2.up, ForceMode2D.Impulse);
+            else if (yAxis < 0)
+                _rigidbody.AddForce(ThrustForce * Vector2.down, ForceMode2D.Impulse);
 
-            _direction.x = (float) Math.Cos(angle);
-            _direction.y = (float) Math.Sin(angle);
-
-            // Smother rotating
-            if (_rigidbody.velocity == Vector2.zero) return; 
-            _rigidbody.velocity = _rigidbody.velocity*0.9f;
-            _rigidbody.angularVelocity = _rigidbody.angularVelocity*0.9f;
-            _rigidbody.AddForce(ThrustForce * _direction, ForceMode2D.Force);
+            Decelerate(xAxis, yAxis);
         }
-    
+
+        /// <summary>
+        ///     Multiple calls to _rigidbody.velocity leads to misbehaviour.
+        /// </summary>
+        private void Decelerate(float x, float y)
+        {
+            var velocity = _rigidbody.velocity;
+
+            if (velocity.magnitude > MaxSpeed)
+                velocity = Normalize(velocity);
+
+            if (x == 0) velocity = new Vector2(velocity.x * 0.8f, velocity.y);
+            if (y == 0) velocity = new Vector2(velocity.x, velocity.y * 0.8f);
+
+            _rigidbody.velocity = velocity;
+        }
+
+        private Vector2 Normalize(Vector2 velocity)
+        {
+            return MaxSpeed * velocity.normalized;
+        }
     }
 }
