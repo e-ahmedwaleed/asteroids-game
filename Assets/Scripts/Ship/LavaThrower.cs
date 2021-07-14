@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Audio;
 using UnityEngine;
+using Utils;
 
 namespace Ship
 {
@@ -20,14 +22,13 @@ namespace Ship
         private const float YScaling = 0.05f;
         private const float WScaling = 0.025f;
 
-        [SerializeField] private AudioSource cleanPew = null;
         [SerializeField] private GameObject lavaPrefap = null;
 
         // Start is called before the first frame update
         private void Start()
         {
             _guns = new List<LavaGun>();
-            ReDesignThrower(Globals.CurrentLevel);
+            ReDesignThrower(GameDataUtils.CurrentLevel);
 
             _shipScript = gameObject.GetComponent<Ship>();
         }
@@ -38,13 +39,16 @@ namespace Ship
             var fire = Math.Max(Input.GetAxis("Fire Lava"), Input.GetAxis("Vertical"));
             if (fire > 0)
             {
+                bool newShot = false;
                 foreach (var gun in _guns)
                     if (gun.GunDown)
                     {
-                        cleanPew.Play();
+                        newShot = true;
                         ThrowLava(gun);
                     }
-
+                
+                if(newShot)
+                    AudioManager.Play(AudioClipName.Shot);
                 MakeThemLonger();
             }
             else
@@ -175,14 +179,14 @@ namespace Ship
 
         public void LevelUp()
         {
-            Globals.CurrentLevel++;
-            ReDesignThrower(Globals.CurrentLevel);
+            GameDataUtils.CurrentLevel++;
+            ReDesignThrower(GameDataUtils.CurrentLevel);
         }
 
         public void LevelDown()
         {
-            Globals.CurrentLevel--;
-            ReDesignThrower(Globals.CurrentLevel);
+            GameDataUtils.CurrentLevel--;
+            ReDesignThrower(GameDataUtils.CurrentLevel);
         }
 
         private void ReDesignThrower(int currentLevel)

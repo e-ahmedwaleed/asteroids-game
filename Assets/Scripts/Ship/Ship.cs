@@ -1,5 +1,7 @@
 ﻿using System;
+using Audio;
 using UnityEngine;
+using Utils;
 
 namespace Ship
 {
@@ -35,7 +37,7 @@ namespace Ship
             var xAxis = Input.GetAxis("Horizontal");
 
             //Mouse processing
-            if (Globals.MouseEnabled)
+            if (GameDataUtils.MouseEnabled)
             {
                 // convert mouse position to world position
                 var position = Input.mousePosition;
@@ -84,11 +86,15 @@ namespace Ship
         private void OnCollisionEnter2D(Collision2D coll)
         {
             if (coll.gameObject.CompareTag("Rock"))
-                Globals.UpgradeScore -=
-                    (int) Math.Floor(Math.Pow(coll.transform.localScale.x * (Globals.CurrentLevel + 1) * 2, 1.5));
-
-            if (Globals.CurrentLevel < 1 && Globals.UpgradeScore < 0)
             {
+                AudioManager.Play(AudioClipName.Damage);
+                GameDataUtils.CurrentScore -=
+                    (int) Math.Floor(Math.Pow(coll.transform.localScale.x * (GameDataUtils.CurrentLevel + 1) * 2, 1.5));
+            }
+
+            if (GameDataUtils.CurrentLevel < 1 && GameDataUtils.CurrentScore < 0)
+            {
+                AudioManager.Play(AudioClipName.Explode);
                 Instantiate(explosionPrefap, transform.position, Quaternion.identity);
                 Destroy(gameObject);
             }

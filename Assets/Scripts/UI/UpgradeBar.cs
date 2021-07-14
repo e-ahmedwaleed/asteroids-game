@@ -2,6 +2,7 @@
 using Ship;
 using UnityEngine;
 using UnityEngine.UI;
+using Utils;
 
 namespace UI
 {
@@ -27,30 +28,30 @@ namespace UI
         // Update is called once per frame
         private void Update()
         {
-            if (Globals.CurrentLevel < 7 && Globals.UpgradeScore > _currentLevelCost)
+            if (GameDataUtils.CurrentLevel < 7 && GameDataUtils.CurrentScore > _currentLevelCost)
             {
-                Globals.UpgradeScore -= _currentLevelCost;
+                GameDataUtils.CurrentScore -= _currentLevelCost;
                 _shipLavaThrower.LevelUp();
                 Reassign();
             }
 
-            if (Globals.CurrentLevel > 0 && Globals.UpgradeScore < 0)
+            if (GameDataUtils.CurrentLevel > 0 && GameDataUtils.CurrentScore < 0)
             {
-                Globals.UpgradeScore += _prevLevelCost;
+                GameDataUtils.CurrentScore += _prevLevelCost;
                 _shipLavaThrower.LevelDown();
                 Reassign();
             }
 
             // ReSharper disable once PossibleLossOfFraction
             //https://forum.unity.com/threads/how-to-change-the-colour-of-a-slider-based-on-its-current-value.363686/
-            slider.value = Globals.UpgradeScore * 100 / _currentLevelCost;
+            slider.value = GameDataUtils.CurrentScore * 100 / _currentLevelCost;
             slider.image.color = Color.Lerp(Color.red, Color.green, slider.value / 100f);
         }
 
         private void Reassign()
         {
-            _prevLevelCost = (int) (Math.Pow(1.5, Globals.CurrentLevel - 1) * 20);
-            _currentLevelCost = (int) (Math.Pow(1.5, Globals.CurrentLevel) * 20);
+            _prevLevelCost = (int) (Math.Pow(1.5, GameDataUtils.CurrentLevel - 1) * 20);
+            _currentLevelCost = (int) (Math.Pow(1.5, GameDataUtils.CurrentLevel) * 20);
         }
     }
 }

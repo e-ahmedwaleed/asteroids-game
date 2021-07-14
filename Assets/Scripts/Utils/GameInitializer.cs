@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Audio;
+using UnityEngine;
 
 namespace Utils
 {
@@ -14,6 +15,13 @@ namespace Utils
         {
             // initialize screen utils
             ScreenUtils.Initialize();
+            
+            // initialize/load game configuration data
+            GameDataUtils.Initialize();
+            
+            // initialize/add audio manager
+            AudioSource audioSource = gameObject.AddComponent<AudioSource>();
+            AudioManager.Initialize(audioSource);
         }
     }
 }

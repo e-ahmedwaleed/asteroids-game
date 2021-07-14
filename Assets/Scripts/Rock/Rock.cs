@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Utils;
 using Random = UnityEngine.Random;
 
 namespace Rock
@@ -43,7 +44,7 @@ namespace Rock
 
             transform.localScale = size;
 
-            return (6 + Globals.CurrentLevel * 1.5f) / Mathf.Sqrt(scale);
+            return (6 + GameDataUtils.CurrentLevel * 1.5f) / Mathf.Sqrt(scale);
         }
 
         private void HitItHard(float impulseForceMagnitude)
@@ -66,9 +67,9 @@ namespace Rock
             if (_gameOverRockCount > 7) return;
 
             if (coll.gameObject.CompareTag("Lava"))
-                Globals.UpgradeScore += (int) Math.Floor(Math.Pow(transform.localScale.x * 2, 2));
+                GameDataUtils.CurrentScore += (int) Math.Floor(Math.Pow(transform.localScale.x * 2, 2));
             else if (!coll.gameObject.CompareTag("Space Ship"))
-                Globals.UpgradeScore += (int) (transform.localScale.x * 2);
+                GameDataUtils.CurrentScore += (int) (transform.localScale.x * 2);
 
             Destroy(gameObject);
         }
@@ -76,13 +77,17 @@ namespace Rock
         private void GameOver()
         {
             if (_gameOverRockCount == 0)
+            {
+                PlayerPrefs.DeleteAll();
                 Destroy(GameObject.FindWithTag("Finish"));
+            }
 
             LastRocks[_gameOverRockCount] = gameObject;
             _gameOverRockCount++;
 
             if (_gameOverRockCount > 7)
             {
+                
                 Camera.main.GetComponent<RockSpawner>().enabled = false;
 
                 foreach (var rock in LastRocks)
@@ -98,6 +103,7 @@ namespace Rock
                     _rigidBody.AddForce(direction * (15 * Random.Range(0.8f, 1.2f)),
                         ForceMode2D.Impulse);
                 }
+                
             }
         }
     }
