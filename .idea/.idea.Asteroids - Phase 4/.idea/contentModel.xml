@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\EvilS\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\EvilS\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_Asteroids - Phase 4.-764673937.00" t="ExcludeRecursive" />
+    <e p="D:\Unity\Learning\Asteroids - Phase 4" t="IncludeRecursive">
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Scripts" t="Include">
+          <e p="Explosion" t="Include">
+            <e p="Explosion.cs" t="Include" />
+          </e>
+          <e p="Globals.cs" t="Include" />
+          <e p="Lava" t="Include">
+            <e p="Lava.cs" t="Include" />
+          </e>
+          <e p="Rock" t="Include">
+            <e p="Rock.cs" t="Include" />
+            <e p="RockSpawner.cs" t="Include" />
+          </e>
+          <e p="Ship" t="Include">
+            <e p="LavaThrower.cs" t="Include" />
+            <e p="Ship.cs" t="Include" />
+          </e>
+          <e p="UI" t="Include">
+            <e p="UpgradeBar.cs" t="Include" />
+          </e>
+          <e p="Utils" t="Include">
+            <e p="GameInitializer.cs" t="Include" />
+            <e p="ScreenUtils.cs" t="Include" />
+            <e p="Timer.cs" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="Asteroids - Phase 4.sln" t="IncludeFlat" />
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="Packages" t="ExcludeRecursive" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+    </e>
+  </component>
+</project>

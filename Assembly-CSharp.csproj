@@ -13,7 +13,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{28E13AE9-ABF3-E73A-94E8-F430596BA777}</ProjectGuid>
+    <ProjectGuid>{5D2C8A18-EC3E-E43C-8B38-D9B2F95D6A7A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -57,28 +57,31 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Explosion\Explosion.cs" />
+    <Compile Include="Assets\Scripts\Globals.cs" />
     <Compile Include="Assets\Scripts\Lava\Lava.cs" />
     <Compile Include="Assets\Scripts\Rock\Rock.cs" />
     <Compile Include="Assets\Scripts\Rock\RockSpawner.cs" />
     <Compile Include="Assets\Scripts\Ship\LavaThrower.cs" />
     <Compile Include="Assets\Scripts\Ship\Ship.cs" />
+    <Compile Include="Assets\Scripts\UI\UpgradeBar.cs" />
     <Compile Include="Assets\Scripts\Utils\GameInitializer.cs" />
     <Compile Include="Assets\Scripts\Utils\ScreenUtils.cs" />
     <Compile Include="Assets\Scripts\Utils\Timer.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>D:/Unity/Learning/Asteroids - Phase 3/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>D:/Unity/Learning/Asteroids - Phase 4/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>D:/Unity/Learning/Asteroids - Phase 3/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>D:/Unity/Learning/Asteroids - Phase 4/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>D:/Unity/Learning/Asteroids - Phase 3/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>D:/Unity/Learning/Asteroids - Phase 4/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>D:/Unity/Learning/Asteroids - Phase 3/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>D:/Unity/Learning/Asteroids - Phase 4/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>D:/Unity/Learning/Asteroids - Phase 3/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>D:/Unity/Learning/Asteroids - Phase 4/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>D:/Unity/2018.4.19f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -282,7 +285,7 @@
       <HintPath>D:/Unity/2018.4.19f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>D:/Unity/Learning/Asteroids - Phase 3/Library/PackageCache/com.unity.analytics@3.2.3/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>D:/Unity/Learning/Asteroids - Phase 4/Library/PackageCache/com.unity.analytics@3.2.3/AnalyticsStandardEvents/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>D:/Unity/2018.4.19f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

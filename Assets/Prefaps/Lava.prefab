@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1989475183346968399}
   - component: {fileID: 7634606352108272055}
   - component: {fileID: 114195974875171624}
-  - component: {fileID: 5465680826487820377}
   m_Layer: 0
   m_Name: Lava
   m_TagString: Lava
@@ -134,7 +133,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -162,21 +161,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf628a9255209fd44b00d0a01cda67e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!68 &5465680826487820377
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5757721744680305078}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -0.04, y: 3.6}
-  - {x: 0.04, y: 3.6}

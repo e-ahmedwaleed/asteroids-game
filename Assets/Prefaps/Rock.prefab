@@ -91,7 +91,7 @@ CapsuleCollider2D:
   m_GameObject: {fileID: 2486905197280772596}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 8db8ded182cdccd4ab3fb4db789156a3, type: 2}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
@@ -131,4 +131,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 172cd114cb094b84da7b7d0690012eb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  explosionPrefap: {fileID: 0}
